@@ -7,18 +7,21 @@
     tools:context=".Xmixdrix">
 
     <!--image of the grid-->
+
+    <!--images of the grid boxes-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView0"
+        app:layout_constraintTop_toTopOf="@+id/imageView1"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/back" />
 
-            <!--images of the grid boxes-->
-        <ImageView
+    <ImageView
             android:id="@+id/imageView0"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -148,7 +151,7 @@
         android:id="@+id/status"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="30sp"
+        android:layout_marginBottom="80sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -157,12 +160,14 @@
 
     <Button
         android:id="@+id/newGame"
+        android:enabled="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="play again"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

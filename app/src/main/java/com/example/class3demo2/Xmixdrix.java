@@ -1,8 +1,10 @@
 package com.example.class3demo2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,32 +18,36 @@ public class Xmixdrix extends AppCompatActivity {
             {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
             {0, 4, 8}, {2, 4, 6}};
     public static int counter = 0;
+    int flag = 0;
+
+
 
     public void playerTap(View view) {
-        ImageView img = (ImageView) view;
-        int tappedImage = Integer.parseInt(img.getTag().toString());
+        if(flag != 1) {
+            ImageView img = (ImageView) view;
+            int tappedImage = Integer.parseInt(img.getTag().toString());
 
-        if (gameState[tappedImage] == 2) {
-            counter++;
+            if (gameState[tappedImage] == 2) {
+                counter++;
 
-            gameState[tappedImage] = activePlayer;
+                gameState[tappedImage] = activePlayer;
 
-            if (activePlayer == 0) {
-                img.setImageResource(R.drawable.x);
-                activePlayer = 1;
-                ImageView status = findViewById(R.id.status);
+                if (activePlayer == 0) {
+                    img.setImageResource(R.drawable.x);
+                    activePlayer = 1;
+                    ImageView status = findViewById(R.id.status);
 
-                status.setImageResource(R.drawable.oplay);
-            } else {
-                img.setImageResource(R.drawable.o);
-                activePlayer = 0;
-                ImageView status = findViewById(R.id.status);
+                    status.setImageResource(R.drawable.oplay);
+                } else {
+                    img.setImageResource(R.drawable.o);
+                    activePlayer = 0;
+                    ImageView status = findViewById(R.id.status);
 
-                status.setImageResource(R.drawable.xplay);
+                    status.setImageResource(R.drawable.xplay);
+                }
             }
         }
 
-        int flag = 0;
         ImageView status = findViewById(R.id.status);
         for (int[] winPosition : winPositions) {
             if (gameState[winPosition[0]] == gameState[winPosition[1]] &&
@@ -56,7 +62,6 @@ public class Xmixdrix extends AppCompatActivity {
                     status.setImageResource(R.drawable.owin);
                     findViewById(R.id.newGame).setEnabled(true);
                 }
-
             }
         }
         if (counter == 9 && flag == 0) {
@@ -83,6 +88,8 @@ public class Xmixdrix extends AppCompatActivity {
 
         ImageView status = findViewById(R.id.status);
         status.setImageResource(R.drawable.xplay);
+        flag = 0;
+        findViewById(R.id.newGame).setEnabled(false);
     }
 
     @Override
@@ -91,7 +98,6 @@ public class Xmixdrix extends AppCompatActivity {
         setContentView(R.layout.activity_xmixdrix);
 
         Button newGame = findViewById(R.id.newGame);
-        //newGame.setEnabled(false);
         newGame.setOnClickListener(this::gameReset);
 
         ((ImageView) findViewById(R.id.status)).setImageResource(R.drawable.xplay);
